@@ -94,10 +94,17 @@ assert len(ethereum) == 948, "Your ethereum data is incorrect length"
 assert np.max(bitcoin) == np.max(ethereum), "Incorrect max values after normalisation"
 assert np.min(bitcoin) == np.min(ethereum), "Incorrect min values after normalisation"
 
+axis = plt.gca()
+plt.scatter(bitcoin_date,bitcoin, label=("Bitcoin")) 
+plt.scatter(ethereum_date,ethereum, label=("Ethereum"))
+plt.title(r'$\bf{Figure\ 2.}$ Normalized cryptocurrency prices')
+plt.xlabel('Date')
+plt.ylabel('Normalized price')
+plt.xticks(rotation=20)
+plt.legend()
 
 
-
-
+plt.show()
 
 
 # # Run test that check that plot renders correctly. Requires plotchecker to be installed.
