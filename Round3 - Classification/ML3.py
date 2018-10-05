@@ -121,10 +121,34 @@ def sigmoid_func(z):
 def gradient(X,y,w):
     ### STUDENT TASK ###
     grad = []
-    grad = np.dot(X, -(y-sigmoid_func(np.dot(X,w))))
-    # YOUR CODE HERE
-    raise NotImplementedError()
+    #grad = np.dot(X, -(y-sigmoid_func(np.dot(X,w))))*X
+    grad = np.dot(X.T, -(y-sigmoid_func(np.dot(X,w.T))))/len(X)
+    #raise NotImplementedError()
     return grad
+
+def logisticRegression_func(X,y,step_size, K):
+    N = X.shape[0]
+    d = X.shape[1]
+    # Initialize w as 1xd array.
+    w = np.zeros((1,d))
+    loss = float('inf')
+    loss_list = []
+    for i in range(K):
+       w = w - (step_size*gradient(X, y, w))
+    
+    return loss_list, w
+
+""" Predict Output """
+def predict_output(X,w):
+    ### STUDENT TASK ###
+    # YOUR CODE HERE
+    regression_result = sigmoid_func(np.dot(X.w))
+    classification_result = (regression_result >= 0.5).astype("int32")
+    classification_accuracy = (classification_result == y_test).mean()
+    raise NotImplementedError()
+    return y
+
+
 
 answ = sigmoid_func(0.458)
 print(answ)
